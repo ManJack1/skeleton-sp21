@@ -1,4 +1,3 @@
-package deque;
 
 public class LinkedListDeque<T> {
   private class IntNode {
@@ -15,7 +14,7 @@ public class LinkedListDeque<T> {
 
   private IntNode sentinel_begin;
   private IntNode sentinel_end;
-    private int count = 0;
+  private int count = 0;
 
   public LinkedListDeque() {
     sentinel_begin = new IntNode(null, null, null);
@@ -32,7 +31,7 @@ public class LinkedListDeque<T> {
     IntNode p = new IntNode(x, sentinel_begin, sentinel_end);
     sentinel_begin.next = p;
     sentinel_end.prev = p;
-    count = 1;
+    count += 1;
   }
 
   public void addFirst(T item) {
@@ -62,7 +61,7 @@ public class LinkedListDeque<T> {
 
   public void printDeque() {
     IntNode p = this.sentinel_begin;
-    while (p!= sentinel_end) {
+    while (p.next.item != null) {
       System.out.print(p.next.item + " ");
       p = p.next;
     }
