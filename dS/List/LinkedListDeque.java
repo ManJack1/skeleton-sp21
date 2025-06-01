@@ -1,4 +1,3 @@
-
 public class LinkedListDeque<T> {
   private class IntNode {
     private T item;
@@ -19,8 +18,8 @@ public class LinkedListDeque<T> {
   public LinkedListDeque() {
     sentinel_begin = new IntNode(null, null, null);
     sentinel_end = new IntNode(null, null, null);
-    sentinel_begin.next = sentinel_end.prev;
-    sentinel_end.prev = sentinel_begin.next;
+    sentinel_begin.next = sentinel_end;
+    sentinel_end.prev = sentinel_begin;
     count = 0;
 
   }
@@ -99,10 +98,44 @@ public class LinkedListDeque<T> {
     while (index--) {
       p = p.next;
       if (p == null) {
-        return null;
+        return nullo;
       }
     }
     return p.item;
+  }
+
+  public T getRecursive(int index) {
+    if (index < 0 || index > this.count) {
+      return null;
+    }
+    return getRecursiveHelper(this.sentinel_begin.next, index);
+  }
+
+  public T getRecursiveHelper(IntNode node, Int index) {
+
+    if (index == 0) {
+      return node.item;
+    }
+
+    return getRecursiveHelper(node.next, index - 1);
+
+  }
+
+  public boolean equals(LinkedListDeque o) {
+    IntNode p = this.sentinel_begin.next;
+    IntNode q = o.sentinel_begin.next;
+    int i = 0;
+    if (this.size() == o.size()) {
+      while (p.item == q.item || i < count) {
+        i = i + 1;
+        p = p.next;
+        q = q.next;
+      }
+      if (i == this.count) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

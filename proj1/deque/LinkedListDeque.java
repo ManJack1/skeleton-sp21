@@ -20,8 +20,8 @@ public class LinkedListDeque<T> {
   public LinkedListDeque() {
     sentinel_begin = new IntNode(null, null, null);
     sentinel_end = new IntNode(null, null, null);
-    sentinel_begin.next = sentinel_end.prev;
-    sentinel_end.prev = sentinel_begin.next;
+    sentinel_begin.next = sentinel_end;
+    sentinel_end.prev = sentinel_begin;
     count = 0;
 
   }
@@ -97,7 +97,8 @@ public class LinkedListDeque<T> {
     if (index == 0) {
       return p.item;
     }
-    while (index--) {
+    while (index  != 0) {
+      index = index - 1;
       p = p.next;
       if (p == null) {
         return null;
@@ -105,5 +106,6 @@ public class LinkedListDeque<T> {
     }
     return p.item;
   }
+
 
 }
